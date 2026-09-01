@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>海鮮 山咲｜WEB予約</title>
+<style>
+  :root{
+    --navy:#0d1b2a;
+    --navy2:#13263a;
+    --gold:#c9a96e;
+    --cream:#f7f3ea;
+    --white:#ffffff;
+    --muted:#7c8793;
+    --line:#d9dee5;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    background:linear-gradient(180deg,var(--navy),var(--navy2));
+    color:#111;
+    min-height:100vh;
+  }
+  .wrap{
+    width:min(100%,520px);
+    margin:0 auto;
+    padding:28px 16px 40px;
+  }
+  .brand{
+    color:white;
+    text-align:center;
+    margin-bottom:20px;
+  }
+  .brand .logo{
+    font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+    font-size:36px;
+    letter-spacing:.12em;
+    font-weight:700;
+  }
+  .brand .sub{
+    font-size:12px;
+    opacity:.78;
+    margin-top:4px;
+    letter-spacing:.14em;
+  }
+  .card{
+    background:var(--cream);
+    border-radius:18px;
+    padding:22px 18px 20px;
+    box-shadow:0 16px 40px rgba(0,0,0,.24);
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:22px;
+    text-align:center;
+  }
+  .lead{
+    margin:0 0 20px;
+    font-size:13px;
+    color:#5b6470;
+    text-align:center;
+    line-height:1.6;
+  }
+  .field{margin:14px 0}
+  label{
+    display:block;
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:7px;
+  }
+  select,input,textarea{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:white;
+    padding:13px 12px;
+    font-size:16px;
+    outline:none;
+  }
+  select:focus,input:focus,textarea:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,169,110,.16);
+  }
+  #date{
+    width:62%;
+    min-width:190px;
+    max-width:250px;
+  }
+  .row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .note{
+    background:#fff;
+    border-left:4px solid var(--gold);
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:12px;
+    line-height:1.6;
+    color:#56606c;
+    margin:16px 0;
+  }
+  button{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    background:var(--navy);
+    color:white;
+    font-size:17px;
+    font-weight:700;
+    padding:15px 12px;
+    cursor:pointer;
+    letter-spacing:.04em;
+  }
+  button:hover{opacity:.94}
+  .footer{
+    color:white;
+    text-align:center;
+    font-size:11px;
+    opacity:.7;
+    line-height:1.7;
+    margin-top:16px;
+  }
+  .success{
+    display:none;
+    margin-top:14px;
+    background:#eef7f1;
+    border:1px solid #cfe6d5;
+    color:#245c33;
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.6;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="logo">海鮮 山咲</div>
+  </div>
+
+  <div class="card">
+    <h1>WEB予約</h1>
+    <p class="lead">ご希望の日時・人数をご入力ください。<br>内容確認後、店舗よりご連絡いたします。</p>
+
+    <form id="bookingForm" method="post" action="https://script.google.com/macros/s/AKfycbzpOCv82f2-L-0e20Auao0LL4heOUvHo2Wk7adZx6PH08QMUSfToGSr5nif6tyJ56Jx4g/exec">
+      <div class="field">
+        <label for="date">ご来店日 / Date</label>
+        <input id="date" name="date" type="date" required>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="time">お時間 / Time</label>
+          <select id="time" name="time" required>
+            <option value="">選択してください</option>
+            <option>11:30</option>
+            <option>12:00</option>
+            <option>12:30</option>
+            <option>13:00</option>
+            <option>17:30</option>
+            <option>18:00</option>
+            <option>18:30</option>
+            <option>19:00</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="people">人数 / Guests</label>
+          <select id="people" name="people" required>
+            <option value="">選択</option>
+            <option>1名</option>
+            <option>2名</option>
+            <option>3名</option>
+            <option>4名</option>
+            <option>5名</option>
+            <option>6名</option>
+            <option>7名以上</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="name">お名前 / Name</label>
+        <input id="name" name="name" type="text" placeholder="例：山田 太郎" required>
+      </div>
+
+      <div class="field">
+        <label for="phone">電話番号 / Phone</label>
+        <input id="phone" name="phone" type="tel" placeholder="例：090-1234-5678" required>
+      </div>
+
+      <div class="field">
+        <label for="email">連絡先メールアドレス / Email</label>
+        <input id="email" name="email" type="email" placeholder="例：example@email.com" required>
+      </div>
+
+      <div class="field">
+        <label for="memo">備考（任意） / Notes (Optional)</label>
+        <textarea id="memo" name="memo" rows="3" placeholder="お子様連れ、席のご希望、アレルギーなど"></textarea>
+      </div>
+
+      <div class="note">
+        ※こちらは予約リクエストです。店舗からの確認連絡をもって予約確定となります。<br>
+        This is a reservation request. Your reservation will be confirmed once you receive confirmation from the restaurant.
+      </div>
+
+      <button type="submit">この内容で予約する</button>
+      <div class="success" id="success">
+        予約リクエストを受け付けました。<br>
+        店舗からの確認メールをお待ちください。<br><br>
+        Your reservation request has been received.<br>
+        Please wait for a confirmation email from the restaurant.
+      </div>
+    </form>
+  </div>
+
+  <div class="footer">
+    海鮮 山咲<br>
+    越後湯沢
+  </div>
+</div>
+
+<script>
+const form = document.getElementById('bookingForm');
+const success = document.getElementById('success');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = '送信中... / Sending...';
+
+  try {
+    const data = new FormData(form);
+
+    await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      mode: 'no-cors'
+    });
+
+    success.style.display = 'block';
+    btn.textContent = '送信完了 / Sent';
+    window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = 'この内容で予約する';
+    }, 1500);
+
+  } catch (err) {
+    alert('送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。');
+    btn.disabled = false;
+    btn.textContent = 'この内容で予約する';
+  }
+});
+</script>
+</body>
+</html>
