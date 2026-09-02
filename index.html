@@ -259,6 +259,59 @@ form.addEventListener('submit', async function(e){
     btn.textContent = 'この内容で予約する';
   }
 });
+  // 2026年9月の予約可能日
+const availableDates = [
+  '2026-09-01',
+  '2026-09-05',
+  '2026-09-06',
+  '2026-09-07',
+  '2026-09-08',
+  '2026-09-11',
+  '2026-09-12',
+  '2026-09-13',
+  '2026-09-14',
+  '2026-09-15',
+  '2026-09-19',
+  '2026-09-20',
+  '2026-09-21',
+  '2026-09-22',
+  '2026-09-23',
+  '2026-09-26',
+  '2026-09-27',
+  '2026-09-28',
+  '2026-09-29'
+];
+
+const dateInput = document.getElementById('date');
+const timeSelect = document.getElementById('time');
+
+dateInput.addEventListener('change', function () {
+  const selectedDate = this.value;
+
+  if (!availableDates.includes(selectedDate)) {
+    alert('この日はご予約いただけません。別の営業日をお選びください。');
+    this.value = '';
+    return;
+  }
+
+  // 一度すべての時間を選択可能に戻す
+  Array.from(timeSelect.options).forEach(option => {
+    option.disabled = false;
+  });
+
+  // 9/23はランチのみ
+  if (selectedDate === '2026-09-23') {
+    Array.from(timeSelect.options).forEach(option => {
+      if (option.value && option.value >= '17:00') {
+        option.disabled = true;
+      }
+    });
+
+    if (timeSelect.value >= '17:00') {
+      timeSelect.value = '';
+    }
+  }
+});
 </script>
 </body>
 </html>
