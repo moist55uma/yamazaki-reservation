@@ -4,166 +4,229 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>海鮮 山咲｜WEB予約</title>
+
 <style>
-  :root{
-    --navy:#0d1b2a;
-    --navy2:#13263a;
-    --gold:#c9a96e;
-    --cream:#f7f3ea;
-    --white:#ffffff;
-    --muted:#7c8793;
-    --line:#d9dee5;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
-    background:linear-gradient(180deg,var(--navy),var(--navy2));
-    color:#111;
-    min-height:100vh;
-  }
-  .wrap{
-    width:min(100%,520px);
-    margin:0 auto;
-    padding:28px 16px 40px;
-  }
-  .brand{
-    color:white;
-    text-align:center;
-    margin-bottom:20px;
-  }
-  .brand .logo{
-    font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
-    font-size:36px;
-    letter-spacing:.12em;
-    font-weight:700;
-  }
-  .brand .sub{
-    font-size:12px;
-    opacity:.78;
-    margin-top:4px;
-    letter-spacing:.14em;
-  }
-  .card{
-    background:var(--cream);
-    border-radius:18px;
-    padding:22px 18px 20px;
-    box-shadow:0 16px 40px rgba(0,0,0,.24);
-  }
-  h1{
-    margin:0 0 6px;
-    font-size:22px;
-    text-align:center;
-  }
-  .lead{
-    margin:0 0 20px;
-    font-size:13px;
-    color:#5b6470;
-    text-align:center;
-    line-height:1.6;
-  }
-  .field{margin:14px 0}
-  label{
-    display:block;
-    font-weight:700;
-    font-size:14px;
-    margin-bottom:7px;
-  }
-  select,input,textarea{
-    width:100%;
-    border:1px solid var(--line);
-    border-radius:10px;
-    background:white;
-    padding:13px 12px;
-    font-size:16px;
-    outline:none;
-  }
-  select:focus,input:focus,textarea:focus{
-    border-color:var(--gold);
-    box-shadow:0 0 0 3px rgba(201,169,110,.16);
-  }
-  #date{
-    width:62%;
-    min-width:190px;
-    max-width:250px;
-  }
-  .row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-  .note{
-    background:#fff;
-    border-left:4px solid var(--gold);
-    padding:10px 12px;
-    border-radius:8px;
-    font-size:12px;
-    line-height:1.6;
-    color:#56606c;
-    margin:16px 0;
-  }
-  button{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    background:var(--navy);
-    color:white;
-    font-size:17px;
-    font-weight:700;
-    padding:15px 12px;
-    cursor:pointer;
-    letter-spacing:.04em;
-  }
-  button:hover{opacity:.94}
-  .footer{
-    color:white;
-    text-align:center;
-    font-size:11px;
-    opacity:.7;
-    line-height:1.7;
-    margin-top:16px;
-  }
-  .success{
-    display:none;
-    margin-top:14px;
-    background:#eef7f1;
-    border:1px solid #cfe6d5;
-    color:#245c33;
-    padding:12px;
-    border-radius:10px;
-    font-size:13px;
-    line-height:1.6;
-  }
+:root{
+  --navy:#0d1b2a;
+  --navy2:#13263a;
+  --gold:#c9a96e;
+  --cream:#f7f3ea;
+  --line:#d9dee5;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:linear-gradient(180deg,var(--navy),var(--navy2));
+  color:#111;
+  min-height:100vh;
+}
+
+.wrap{
+  width:min(100%,520px);
+  margin:0 auto;
+  padding:28px 16px 40px;
+}
+
+.brand{
+  color:white;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.brand .logo{
+  font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+  font-size:36px;
+  letter-spacing:.12em;
+  font-weight:700;
+}
+
+.card{
+  background:var(--cream);
+  border-radius:18px;
+  padding:22px 18px 20px;
+  box-shadow:0 16px 40px rgba(0,0,0,.24);
+}
+
+h1{
+  margin:0 0 6px;
+  font-size:22px;
+  text-align:center;
+}
+
+.lead{
+  margin:0 0 20px;
+  font-size:13px;
+  color:#5b6470;
+  text-align:center;
+  line-height:1.6;
+}
+
+.field{margin:14px 0}
+
+label{
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:7px;
+}
+
+select,input,textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:white;
+  padding:13px 12px;
+  font-size:16px;
+  outline:none;
+}
+
+select:focus,input:focus,textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(201,169,110,.16);
+}
+
+#date{
+  width:62%;
+  min-width:190px;
+  max-width:250px;
+}
+
+.date-notice{
+  margin:7px 0 0;
+  font-size:12px;
+  line-height:1.55;
+  color:#66717d;
+}
+
+.date-error{
+  display:none;
+  margin:8px 0 0;
+  padding:9px 10px;
+  border-radius:8px;
+  background:#fff0f0;
+  border:1px solid #efc7c7;
+  color:#b42318;
+  font-size:12px;
+  line-height:1.55;
+}
+
+.time-note{
+  display:none;
+  margin:8px 0 0;
+  padding:9px 10px;
+  border-radius:8px;
+  background:#fff7e8;
+  border:1px solid #ead4aa;
+  color:#7b5b20;
+  font-size:12px;
+  line-height:1.55;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.note{
+  background:#fff;
+  border-left:4px solid var(--gold);
+  padding:10px 12px;
+  border-radius:8px;
+  font-size:12px;
+  line-height:1.6;
+  color:#56606c;
+  margin:16px 0;
+}
+
+button{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  background:var(--navy);
+  color:white;
+  font-size:17px;
+  font-weight:700;
+  padding:15px 12px;
+  cursor:pointer;
+  letter-spacing:.04em;
+}
+
+.footer{
+  color:white;
+  text-align:center;
+  font-size:11px;
+  opacity:.7;
+  line-height:1.7;
+  margin-top:16px;
+}
+
+.success{
+  display:none;
+  margin-top:14px;
+  background:#eef7f1;
+  border:1px solid #cfe6d5;
+  color:#245c33;
+  padding:12px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.6;
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
+
   <div class="brand">
     <div class="logo">海鮮 山咲</div>
   </div>
 
   <div class="card">
+
     <h1>WEB予約</h1>
-    <p class="lead">ご希望の日時・人数をご入力ください。<br>内容確認後、店舗よりご連絡いたします。</p>
 
-    <form id="bookingForm" method="post" action="https://script.google.com/macros/s/AKfycbzpOCv82f2-L-0e20Auao0LL4heOUvHo2Wk7adZx6PH08QMUSfToGSr5nif6tyJ56Jx4g/exec">
+    <p class="lead">
+      ご希望の日時・人数をご入力ください。<br>
+      内容確認後、店舗よりご連絡いたします。
+    </p>
+
+    <form
+      id="bookingForm"
+      method="post"
+      action="https://script.google.com/macros/s/AKfycbzpOCv82f2-L-0e20Auao0LL4heOUvHo2Wk7adZx6PH08QMUSfToGSr5nif6tyJ56Jx4g/exec"
+    >
+
       <div class="field">
-        <label for="date">ご来店日 / Date</label>
-        <input id="date" name="date" type="date" required>
-        <p id="dateNotice" style="font-size:13px; color:#666; margin-top:6px;">
-  営業日のみご予約いただけます / Reservations available on business days only
-</p>
 
-<p id="dateError" style="display:none; color:#c62828; font-size:13px; margin-top:6px;">
-  この日は休業日のため、ご予約いただけません。<br>
-  Closed on this date. Please select another date.<br>
-  此日期為公休日，無法接受訂位。請選擇其他日期。
-</p>
+        <label for="date">ご来店日 / Date</label>
+
+        <input id="date" name="date" type="date" required>
+
+        <p class="date-notice">
+          営業日のみご予約いただけます。<br>
+          Reservations are available on business days only.<br>
+          僅限營業日接受訂位。
+        </p>
+
+        <div id="dateError" class="date-error">
+          この日は休業日のため、ご予約いただけません。別の営業日をお選びください。<br>
+          Closed on this date. Please select another business day.<br>
+          此日期為公休日，無法接受訂位。請選擇其他營業日。
+        </div>
+
       </div>
 
       <div class="row">
+
         <div class="field">
+
           <label for="time">お時間 / Time</label>
+
           <select id="time" name="time" required>
             <option value="">選択してください</option>
             <option>11:30</option>
@@ -175,10 +238,19 @@
             <option>18:30</option>
             <option>19:00</option>
           </select>
+
+          <div id="timeNote" class="time-note">
+            9月23日はランチのみ営業です。<br>
+            September 23: Lunch service only.<br>
+            9月23日僅提供午餐時段。
+          </div>
+
         </div>
 
         <div class="field">
+
           <label for="people">人数 / Guests</label>
+
           <select id="people" name="people" required>
             <option value="">選択</option>
             <option>1名</option>
@@ -189,27 +261,40 @@
             <option>6名</option>
             <option>7名以上</option>
           </select>
+
         </div>
+
       </div>
 
       <div class="field">
         <label for="name">お名前 / Name</label>
-        <input id="name" name="name" type="text" placeholder="例：山田 太郎" required>
+        <input id="name" name="name" type="text"
+               placeholder="例：山田 太郎" required>
       </div>
 
       <div class="field">
         <label for="phone">電話番号 / Phone</label>
-        <input id="phone" name="phone" type="tel" placeholder="例：090-1234-5678" required>
+        <input id="phone" name="phone" type="tel"
+               placeholder="例：090-1234-5678" required>
       </div>
 
       <div class="field">
         <label for="email">連絡先メールアドレス / Email</label>
-        <input id="email" name="email" type="email" placeholder="例：example@email.com" required>
+        <input id="email" name="email" type="email"
+               placeholder="例：example@email.com" required>
       </div>
 
       <div class="field">
-        <label for="memo">備考（任意） / Notes (Optional)</label>
-        <textarea id="memo" name="memo" rows="3" placeholder="お子様連れ、席のご希望、アレルギーなど"></textarea>
+        <label for="memo">
+          備考（任意） / Notes (Optional)
+        </label>
+
+        <textarea
+          id="memo"
+          name="memo"
+          rows="3"
+          placeholder="お子様連れ、席のご希望、アレルギーなど"
+        ></textarea>
       </div>
 
       <div class="note">
@@ -217,110 +302,271 @@
         This is a reservation request. Your reservation will be confirmed once you receive confirmation from the restaurant.
       </div>
 
-      <button type="submit">この内容で予約する</button>
+      <button type="submit">
+        この内容で予約する
+      </button>
+
       <div class="success" id="success">
         予約リクエストを受け付けました。<br>
         店舗からの確認メールをお待ちください。<br><br>
+
         Your reservation request has been received.<br>
         Please wait for a confirmation email from the restaurant.
       </div>
+
     </form>
+
   </div>
 
   <div class="footer">
     海鮮 山咲<br>
     越後湯沢
   </div>
+
 </div>
 
 <script>
+
 const form = document.getElementById('bookingForm');
 const success = document.getElementById('success');
 
-form.addEventListener('submit', async function(e){
-  e.preventDefault();
+const dateInput = document.getElementById('date');
+const timeSelect = document.getElementById('time');
 
-  const btn = form.querySelector('button[type="submit"]');
-  btn.disabled = true;
-  btn.textContent = '送信中... / Sending...';
+const dateError = document.getElementById('dateError');
+const timeNote = document.getElementById('timeNote');
 
-  try {
-    const data = new FormData(form);
 
-    await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      mode: 'no-cors'
-    });
+/* =========================
+   2026年9月 営業日
+========================= */
 
-    success.style.display = 'block';
-    btn.textContent = '送信完了 / Sent';
-    window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
-
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'この内容で予約する';
-    }, 1500);
-
-  } catch (err) {
-    alert('送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。');
-    btn.disabled = false;
-    btn.textContent = 'この内容で予約する';
-  }
-});
-  // 2026年9月の予約可能日
 const availableDates = [
+
   '2026-09-01',
+
   '2026-09-05',
   '2026-09-06',
   '2026-09-07',
   '2026-09-08',
+
   '2026-09-11',
   '2026-09-12',
   '2026-09-13',
   '2026-09-14',
   '2026-09-15',
+
   '2026-09-19',
   '2026-09-20',
   '2026-09-21',
   '2026-09-22',
   '2026-09-23',
+
   '2026-09-26',
   '2026-09-27',
   '2026-09-28',
   '2026-09-29'
+
 ];
 
-const dateInput = document.getElementById('date');
-const timeSelect = document.getElementById('time');
 
-dateInput.addEventListener('change', function () {
-  const selectedDate = this.value;
+/* 時間を一度すべて選択可能にする */
 
-  if (!availableDates.includes(selectedDate)) {
-    alert('この日はご予約いただけません。別の営業日をお選びください。');
-    this.value = '';
-    return;
-  }
+function resetTimeOptions(){
 
-  // 一度すべての時間を選択可能に戻す
   Array.from(timeSelect.options).forEach(option => {
     option.disabled = false;
   });
 
-  // 9/23はランチのみ
-  if (selectedDate === '2026-09-23') {
+}
+
+
+/* 日付チェック */
+
+function applyDateRules(){
+
+  const selectedDate = dateInput.value;
+
+  dateError.style.display = 'none';
+  timeNote.style.display = 'none';
+
+  resetTimeOptions();
+
+
+  if(!selectedDate){
+    return false;
+  }
+
+
+  /* 休業日 */
+
+  if(!availableDates.includes(selectedDate)){
+
+    dateError.style.display = 'block';
+
+    dateInput.value = '';
+    timeSelect.value = '';
+
+    return false;
+
+  }
+
+
+  /* 9月23日はランチのみ */
+
+  if(selectedDate === '2026-09-23'){
+
+    timeNote.style.display = 'block';
+
     Array.from(timeSelect.options).forEach(option => {
-      if (option.value && option.value >= '17:00') {
+
+      if(option.value && option.value >= '17:00'){
         option.disabled = true;
       }
+
     });
 
-    if (timeSelect.value >= '17:00') {
+
+    if(timeSelect.value &&
+       timeSelect.value >= '17:00'){
+
       timeSelect.value = '';
+
     }
+
   }
-});
+
+
+  return true;
+
+}
+
+
+dateInput.addEventListener(
+  'change',
+  applyDateRules
+);
+
+
+/* =========================
+   予約送信
+========================= */
+
+form.addEventListener(
+  'submit',
+  async function(e){
+
+    e.preventDefault();
+
+
+    const selectedDate =
+      dateInput.value;
+
+    const selectedTime =
+      timeSelect.value;
+
+
+    /* 送信直前にも営業日チェック */
+
+    if(!availableDates.includes(selectedDate)){
+
+      dateError.style.display = 'block';
+
+      dateInput.focus();
+
+      return;
+
+    }
+
+
+    /* 9/23 夜予約防止 */
+
+    if(
+      selectedDate === '2026-09-23' &&
+      selectedTime >= '17:00'
+    ){
+
+      timeNote.style.display = 'block';
+
+      timeSelect.value = '';
+
+      timeSelect.focus();
+
+      return;
+
+    }
+
+
+    const btn =
+      form.querySelector(
+        'button[type="submit"]'
+      );
+
+
+    btn.disabled = true;
+
+    btn.textContent =
+      '送信中... / Sending...';
+
+
+    try{
+
+      const data =
+        new FormData(form);
+
+
+      await fetch(
+        form.action,
+        {
+          method:'POST',
+          body:data,
+          mode:'no-cors'
+        }
+      );
+
+
+      success.style.display =
+        'block';
+
+
+      btn.textContent =
+        '送信完了 / Sent';
+
+
+      window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:'smooth'
+      });
+
+
+      setTimeout(() => {
+
+        btn.disabled = false;
+
+        btn.textContent =
+          'この内容で予約する';
+
+      },1500);
+
+
+    }catch(err){
+
+      alert(
+        '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。'
+      );
+
+
+      btn.disabled = false;
+
+      btn.textContent =
+        'この内容で予約する';
+
+    }
+
+  }
+);
+
 </script>
+
 </body>
 </html>
