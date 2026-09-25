@@ -1,348 +1,24 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海鮮 山咲｜WEB予約</title>
+const SHEET_NAME = 'シート1';
 
-<style>
-:root{
-  --navy:#0d1b2a;
-  --navy2:#13263a;
-  --gold:#c9a96e;
-  --cream:#f7f3ea;
-  --line:#d9dee5;
-}
-*{box-sizing:border-box}
+/* ========================================
+   海鮮 山咲 WEB予約
+======================================== */
 
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
-  background:linear-gradient(180deg,var(--navy),var(--navy2));
-  color:#111;
-  min-height:100vh;
-}
 
-.wrap{
-  width:min(100%,520px);
-  margin:0 auto;
-  padding:28px 16px 40px;
-}
-
-.brand{
-  color:white;
-  text-align:center;
-  margin-bottom:20px;
-}
-
-.logo{
-  font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
-  font-size:36px;
-  letter-spacing:.12em;
-  font-weight:700;
-}
-
-.card{
-  background:var(--cream);
-  border-radius:18px;
-  padding:22px 18px 20px;
-  box-shadow:0 16px 40px rgba(0,0,0,.24);
-}
-
-h1{
-  margin:0 0 6px;
-  font-size:22px;
-  text-align:center;
-}
-
-.lead{
-  margin:0 0 20px;
-  font-size:13px;
-  color:#5b6470;
-  text-align:center;
-  line-height:1.6;
-}
-
-.field{margin:14px 0}
-
-label{
-  display:block;
-  font-weight:700;
-  font-size:14px;
-  margin-bottom:7px;
-}
-
-select,input,textarea{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:white;
-  padding:13px 12px;
-  font-size:16px;
-  outline:none;
-}
-
-select:focus,input:focus,textarea:focus{
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(201,169,110,.16);
-}
-
-#date{
-  width:62%;
-  min-width:190px;
-  max-width:250px;
-}
-
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.notice{
-  margin:8px 0 0;
-  font-size:12px;
-  line-height:1.55;
-  color:#66717d;
-}
-
-.error{
-  display:none;
-  margin-top:8px;
-  padding:10px;
-  border-radius:8px;
-  background:#fff0f0;
-  border:1px solid #efc7c7;
-  color:#b42318;
-  font-size:12px;
-  line-height:1.55;
-}
-
-.note{
-  background:white;
-  border-left:4px solid var(--gold);
-  padding:10px 12px;
-  border-radius:8px;
-  font-size:12px;
-  line-height:1.7;
-  color:#56606c;
-  margin:16px 0;
-}
-
-button{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  background:var(--navy);
-  color:white;
-  font-size:17px;
-  font-weight:700;
-  padding:15px 12px;
-  cursor:pointer;
-}
-
-button:disabled{
-  opacity:.55;
-}
-
-.success{
-  display:none;
-  margin-top:14px;
-  background:#eef7f1;
-  border:1px solid #cfe6d5;
-  color:#245c33;
-  padding:12px;
-  border-radius:10px;
-  font-size:13px;
-  line-height:1.7;
-}
-
-.footer{
-  color:white;
-  text-align:center;
-  font-size:11px;
-  opacity:.7;
-  line-height:1.7;
-  margin-top:16px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="wrap">
-
-  <div class="brand">
-    <div class="logo">海鮮 山咲</div>
-  </div>
-
-  <div class="card">
-
-    <h1>WEB予約</h1>
-
-    <p class="lead">
-      ご希望の日時・人数をご入力ください。<br>
-      内容確認後、店舗よりご連絡いたします。
-    </p>
-
-    <form
-      id="bookingForm"
-      method="post"
-      action="https://script.google.com/macros/s/AKfycbzWsu0E55xAaK41mnuYQNLJOaiYTAtc1tdogBz7OE12Ln2SXFVTIEc72DJ9494DqDFO/exec"
-    >
-
-      <input type="hidden" id="source" name="source" value="不明">
-
-      <div class="field">
-
-        <label for="date">ご来店日 / Date</label>
-
-        <input id="date" name="date" type="date" required>
-
-        <p class="notice">
-          本日から14日以内の営業日のみご予約いただけます。<br>
-          Reservations are accepted for business days within the next 14 days.<br>
-          僅接受自今日起14天內營業日的訂位。
-        </p>
-
-        <div id="dateError" class="error"></div>
-
-      </div>
-
-      <div class="row">
-
-        <div class="field">
-
-          <label for="time">お時間 / Time</label>
-
-          <select id="time" name="time" required>
-            <option value="">日付を選択</option>
-          </select>
-
-        </div>
-
-        <div class="field">
-
-          <label for="people">人数 / Guests</label>
-
-          <select id="people" name="people" required>
-            <option value="">選択</option>
-            <option>1名</option>
-            <option>2名</option>
-            <option>3名</option>
-            <option>4名</option>
-            <option>5名</option>
-            <option>6名</option>
-            <option>7名以上</option>
-          </select>
-
-        </div>
-
-      </div>
-
-      <div class="field">
-        <label for="name">お名前 / Name</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="例：山田 太郎"
-          required
-        >
-      </div>
-
-      <div class="field">
-        <label for="phone">電話番号 / Phone</label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="例：090-1234-5678"
-          required
-        >
-      </div>
-
-      <div class="field">
-        <label for="email">連絡先メールアドレス / Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="例：example@email.com"
-          required
-        >
-      </div>
-
-      <div class="field">
-
-        <label for="memo">
-          備考（任意） / Notes (Optional)
-        </label>
-
-        <textarea
-          id="memo"
-          name="memo"
-          rows="3"
-          placeholder="お子様連れ、席のご希望、アレルギーなど"
-        ></textarea>
-
-      </div>
-
-      <div class="note">
-
-        ※こちらは<strong>予約リクエスト</strong>です。
-        店舗からの確認連絡をもって予約確定となります。<br><br>
-
-        This is a reservation request.
-        Your reservation is confirmed only after confirmation from the restaurant.<br><br>
-
-        此為訂位申請。
-        收到餐廳確認通知後，訂位才正式成立。
-
-      </div>
-
-      <button id="submitButton" type="submit">
-        この内容で予約する
-      </button>
-
-      <div class="success" id="success">
-
-        <strong>予約リクエストを受け付けました。</strong><br>
-        店舗からの確認メールをお待ちください。<br><br>
-
-        Your reservation request has been received.<br>
-        Please wait for a confirmation email from the restaurant.<br><br>
-
-        已收到您的訂位申請。<br>
-        請等待餐廳的確認郵件。
-
-      </div>
-
-    </form>
-
-  </div>
-
-  <div class="footer">
-    海鮮 山咲<br>
-    越後湯沢
-  </div>
-
-</div>
-
-
-<script>
-
-/* =========================
-   営業日
-========================= */
+/* ========================================
+   現在公開する営業日
+   ※11月以降は現在予約不可
+======================================== */
 
 const OPEN_DATES = [
 
+  // 2026年9月
   '2026-09-26',
   '2026-09-27',
   '2026-09-28',
   '2026-09-29',
 
+  // 2026年10月
   '2026-10-03',
   '2026-10-04',
   '2026-10-05',
@@ -369,12 +45,18 @@ const OPEN_DATES = [
 
 ];
 
+
+/* ========================================
+   予約時間
+======================================== */
+
 const LUNCH_TIMES = [
   '11:30',
   '12:00',
   '12:30',
   '13:00'
 ];
+
 
 const DINNER_TIMES = [
   '17:30',
@@ -384,527 +66,591 @@ const DINNER_TIMES = [
 ];
 
 
-const form =
-  document.getElementById('bookingForm');
+/* ========================================
+   POST受信
+======================================== */
 
-const dateInput =
-  document.getElementById('date');
+function doPost(e) {
 
-const timeSelect =
-  document.getElementById('time');
+  try {
 
-const dateError =
-  document.getElementById('dateError');
+    const p = e.parameter || {};
 
-const success =
-  document.getElementById('success');
+    const date =
+      String(p.date || '').trim();
 
-const sourceInput =
-  document.getElementById('source');
+    const time =
+      String(p.time || '').trim();
 
-const submitButton =
-  document.getElementById('submitButton');
+    const people =
+      String(p.people || '').trim();
 
+    const name =
+      String(p.name || '').trim();
 
-/* =========================
-   日本の日付
-========================= */
+    const phone =
+      String(p.phone || '').trim();
 
-function getJapanToday(){
+    const email =
+      String(p.email || '').trim();
 
-  const parts =
-    new Intl.DateTimeFormat(
-      'en-CA',
-      {
-        timeZone:'Asia/Tokyo',
-        year:'numeric',
-        month:'2-digit',
-        day:'2-digit'
-      }
-    ).formatToParts(new Date());
+    const memo =
+      String(p.memo || '').trim();
 
-  const values = {};
-
-  parts.forEach(part => {
-    values[part.type] = part.value;
-  });
-
-  return (
-    values.year + '-' +
-    values.month + '-' +
-    values.day
-  );
-
-}
-
-
-function addDays(dateString,days){
-
-  const date =
-    new Date(
-      dateString + 'T00:00:00+09:00'
-    );
-
-  date.setDate(
-    date.getDate() + days
-  );
-
-  const parts =
-    new Intl.DateTimeFormat(
-      'en-CA',
-      {
-        timeZone:'Asia/Tokyo',
-        year:'numeric',
-        month:'2-digit',
-        day:'2-digit'
-      }
-    ).formatToParts(date);
-
-  const values = {};
-
-  parts.forEach(part => {
-    values[part.type] = part.value;
-  });
-
-  return (
-    values.year + '-' +
-    values.month + '-' +
-    values.day
-  );
-
-}
-
-
-/* =========================
-   予約可能期間
-========================= */
-
-const today =
-  getJapanToday();
-
-const fourteenDaysLater =
-  addDays(today,14);
-
-dateInput.min =
-  today;
-
-/* 11月以降はまだ予約不可 */
-
-dateInput.max =
-  fourteenDaysLater < '2026-10-31'
-    ? fourteenDaysLater
-    : '2026-10-31';
-
-
-/* =========================
-   流入元
-========================= */
-
-const params =
-  new URLSearchParams(
-    window.location.search
-  );
-
-let source =
-  params.get('utm_source') ||
-  params.get('source') ||
-  '不明';
-
-source =
-  source.toLowerCase();
-
-if(
-  source === 'ig' ||
-  source === 'instagram'
-){
-  source = 'Instagram';
-}
-else if(
-  source === 'threads' ||
-  source === 'thread'
-){
-  source = 'Threads';
-}
-else if(
-  source === 'google' ||
-  source === 'gmb'
-){
-  source = 'Google';
-}
-else{
-  source = source || '不明';
-}
-
-sourceInput.value =
-  source;
-
-
-/* =========================
-   日本時間
-========================= */
-
-function getJapanTime(){
-
-  const parts =
-    new Intl.DateTimeFormat(
-      'en-GB',
-      {
-        timeZone:'Asia/Tokyo',
-        hour:'2-digit',
-        minute:'2-digit',
-        hour12:false
-      }
-    ).formatToParts(new Date());
-
-  const values = {};
-
-  parts.forEach(part => {
-    values[part.type] = part.value;
-  });
-
-  return (
-    values.hour + ':' +
-    values.minute
-  );
-
-}
-
-
-/* =========================
-   時間選択肢を作る
-========================= */
-
-function createTimeOptions(){
-
-  timeSelect.innerHTML =
-    '<option value="">選択してください</option>';
-
-  const selectedDate =
-    dateInput.value;
-
-  if(!selectedDate){
-    return;
-  }
-
-  let times = [
-    ...LUNCH_TIMES,
-    ...DINNER_TIMES
-  ];
-
-
-  /* 当日の締切 */
-
-  if(selectedDate === getJapanToday()){
-
-    const currentTime =
-      getJapanTime();
-
-    times =
-      times.filter(time => {
-
-        if(
-          LUNCH_TIMES.includes(time) &&
-          currentTime >= '10:30'
-        ){
-          return false;
-        }
-
-        if(
-          DINNER_TIMES.includes(time) &&
-          currentTime >= '16:00'
-        ){
-          return false;
-        }
-
-        return true;
-
-      });
-
-  }
-
-
-  times.forEach(time => {
-
-    const option =
-      document.createElement('option');
-
-    option.value =
-      time;
-
-    option.textContent =
-      time;
-
-    timeSelect.appendChild(
-      option
-    );
-
-  });
-
-
-  if(times.length === 0){
-
-    timeSelect.innerHTML =
-      '<option value="">本日の受付は終了しました</option>';
-
-  }
-
-}
-
-
-/* =========================
-   日付変更時だけチェック
-========================= */
-
-function validateAndUpdateDate(){
-
-  dateError.style.display =
-    'none';
-
-  dateError.innerHTML =
-    '';
-
-  const selected =
-    dateInput.value;
-
-  if(!selected){
-
-    timeSelect.innerHTML =
-      '<option value="">日付を選択</option>';
-
-    return false;
-  }
-
-
-  if(
-    selected < today ||
-    selected > dateInput.max
-  ){
-
-    dateError.innerHTML =
-      '予約は本日から14日以内のみ受け付けています。<br>' +
-      'Reservations are accepted within the next 14 days.<br>' +
-      '僅接受自今日起14天內的訂位。';
-
-    dateError.style.display =
-      'block';
-
-    dateInput.value = '';
-
-    timeSelect.innerHTML =
-      '<option value="">日付を選択</option>';
-
-    return false;
-
-  }
-
-
-  if(
-    !OPEN_DATES.includes(selected)
-  ){
-
-    dateError.innerHTML =
-      'この日は休業日のため、ご予約いただけません。<br>' +
-      'Closed on this date. Please select another business day.<br>' +
-      '此日期為公休日，請選擇其他營業日。';
-
-    dateError.style.display =
-      'block';
-
-    dateInput.value = '';
-
-    timeSelect.innerHTML =
-      '<option value="">日付を選択</option>';
-
-    return false;
-
-  }
-
-
-  createTimeOptions();
-
-  return true;
-
-}
-
-
-dateInput.addEventListener(
-  'change',
-  validateAndUpdateDate
-);
-
-
-/* =========================
-   送信
-========================= */
-
-form.addEventListener(
-  'submit',
-  async function(e){
-
-    e.preventDefault();
-
-
-    /* ここでは時間欄を作り直さない */
-
-    const selectedDate =
-      dateInput.value;
-
-    const selectedTime =
-      timeSelect.value;
-
-
-    /* 日付チェック */
-
-    if(
-      !selectedDate ||
-      !OPEN_DATES.includes(selectedDate) ||
-      selectedDate < today ||
-      selectedDate > dateInput.max
-    ){
-
-      dateError.innerHTML =
-        'この日はご予約いただけません。別の営業日をお選びください。';
-
-      dateError.style.display =
-        'block';
-
-      dateInput.focus();
-
-      return;
-
-    }
-
-
-    /* 時間チェック */
-
-    const validTimes = [
-      ...LUNCH_TIMES,
-      ...DINNER_TIMES
-    ];
-
-    if(
-      !selectedTime ||
-      !validTimes.includes(selectedTime)
-    ){
-
-      alert(
-        '予約時間を選択してください。'
+    const source =
+      normalizeSource(
+        p.source || ''
       );
 
-      timeSelect.focus();
 
-      return;
+    /* ========================================
+       必須項目チェック
+    ======================================== */
+
+    if (
+      !date ||
+      !time ||
+      !people ||
+      !name ||
+      !phone ||
+      !email
+    ) {
+
+      return response(
+        'error',
+        '必須項目が入力されていません'
+      );
 
     }
 
 
-    /* 当日締切を送信直前にも確認 */
+    /* ========================================
+       営業日チェック
+    ======================================== */
 
-    if(
-      selectedDate === getJapanToday()
-    ){
+    if (
+      !OPEN_DATES.includes(date)
+    ) {
+
+      return response(
+        'error',
+        'この日は予約を受け付けていません'
+      );
+
+    }
+
+
+    /* ========================================
+       日本時間
+    ======================================== */
+
+    const now =
+      new Date();
+
+
+    const todayString =
+      Utilities.formatDate(
+        now,
+        'Asia/Tokyo',
+        'yyyy-MM-dd'
+      );
+
+
+    const today =
+      new Date(
+        todayString +
+        'T00:00:00+09:00'
+      );
+
+
+    const selected =
+      new Date(
+        date +
+        'T00:00:00+09:00'
+      );
+
+
+    /* ========================================
+       今日〜14日先
+    ======================================== */
+
+    const diffDays =
+      Math.round(
+        (
+          selected.getTime() -
+          today.getTime()
+        ) /
+        86400000
+      );
+
+
+    if (
+      diffDays < 0 ||
+      diffDays > 14
+    ) {
+
+      return response(
+        'error',
+        '予約は本日から14日以内のみ受け付けています'
+      );
+
+    }
+
+
+    /* ========================================
+       時間チェック
+    ======================================== */
+
+    const validTimes =
+      LUNCH_TIMES.concat(
+        DINNER_TIMES
+      );
+
+
+    if (
+      !validTimes.includes(time)
+    ) {
+
+      return response(
+        'error',
+        'この時間は予約できません'
+      );
+
+    }
+
+
+    /* ========================================
+       当日予約締切
+    ======================================== */
+
+    if (
+      date === todayString
+    ) {
 
       const currentTime =
-        getJapanTime();
+        Utilities.formatDate(
+          now,
+          'Asia/Tokyo',
+          'HH:mm'
+        );
 
-      if(
-        LUNCH_TIMES.includes(selectedTime) &&
+
+      /* ランチ 10:30締切 */
+
+      if (
+        LUNCH_TIMES.includes(time) &&
         currentTime >= '10:30'
-      ){
+      ) {
 
-        alert(
-          '本日のランチ予約受付は終了しました。'
+        return response(
+          'error',
+          '本日のランチ予約受付は終了しました'
         );
-
-        createTimeOptions();
-
-        return;
 
       }
 
 
-      if(
-        DINNER_TIMES.includes(selectedTime) &&
+      /* ディナー 16:00締切 */
+
+      if (
+        DINNER_TIMES.includes(time) &&
         currentTime >= '16:00'
-      ){
+      ) {
 
-        alert(
-          '本日のディナー予約受付は終了しました。'
+        return response(
+          'error',
+          '本日のディナー予約受付は終了しました'
         );
-
-        createTimeOptions();
-
-        return;
 
       }
 
     }
 
 
-    submitButton.disabled =
-      true;
+    /* ========================================
+       スプレッドシート
+    ======================================== */
 
-    submitButton.textContent =
-      '送信中... / Sending...';
+    const ss =
+      SpreadsheetApp
+        .getActiveSpreadsheet();
 
 
-    try{
-
-      const data =
-        new FormData(form);
-
-      await fetch(
-        form.action,
-        {
-          method:'POST',
-          body:data,
-          mode:'no-cors'
-        }
+    let sheet =
+      ss.getSheetByName(
+        SHEET_NAME
       );
 
 
-      success.style.display =
-        'block';
+    if (!sheet) {
 
-      submitButton.textContent =
-        '送信完了 / Sent';
-
-
-      /* 二重送信防止 */
-
-      form
-        .querySelectorAll(
-          'input:not([type="hidden"]), textarea, select'
-        )
-        .forEach(element => {
-          element.disabled = true;
-        });
-
-
-      window.scrollTo({
-        top:document.body.scrollHeight,
-        behavior:'smooth'
-      });
+      sheet =
+        ss.getSheets()[0];
 
     }
-    catch(error){
 
-      alert(
-        '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。'
+
+    /* ========================================
+       見出し
+    ======================================== */
+
+    if (
+      sheet.getLastRow() === 0
+    ) {
+
+      sheet.appendRow([
+
+        '受付日時',
+        '来店日',
+        '時間',
+        '人数',
+        '名前',
+        '電話番号',
+        'メール',
+        '備考',
+        '流入元',
+        '予約状況'
+
+      ]);
+
+
+      sheet.setFrozenRows(1);
+
+    }
+
+
+    /* ========================================
+       予約を台帳に登録
+    ======================================== */
+
+    sheet.appendRow([
+
+      new Date(),
+      date,
+      time,
+      people,
+      name,
+
+      /* 電話番号はあとから文字列で設定 */
+      '',
+
+      email,
+      memo,
+      source,
+      '未確認'
+
+    ]);
+
+
+    const lastRow =
+      sheet.getLastRow();
+
+
+    /* ========================================
+       電話番号を文字列として保存
+       090の先頭0を消さない
+    ======================================== */
+
+    const phoneCell =
+      sheet.getRange(
+        lastRow,
+        6
       );
 
-      submitButton.disabled =
-        false;
 
-      submitButton.textContent =
-        'この内容で予約する';
+    phoneCell
+      .setNumberFormat('@');
+
+
+    phoneCell
+      .setValue(phone);
+
+
+    /* ========================================
+       店舗通知メール
+    ======================================== */
+
+    const shopEmail =
+      Session
+        .getEffectiveUser()
+        .getEmail();
+
+
+    const shopSubject =
+      `【山咲WEB予約】${date} ${time} ${name}様`;
+
+
+    const shopBody =
+`海鮮 山咲に新しい予約リクエストが入りました。
+
+━━━━━━━━━━━━━━━━
+来店日：${date}
+時間：${time}
+人数：${people}
+お名前：${name}
+電話番号：${phone}
+メール：${email}
+
+備考：
+${memo || 'なし'}
+
+流入元：${source}
+━━━━━━━━━━━━━━━━
+
+※この時点ではまだ予約確定ではありません。
+
+内容をご確認のうえ、
+お客様へ予約確定のご連絡をお願いします。`;
+
+
+    /* ========================================
+       お客様への自動返信
+    ======================================== */
+
+    const customerSubject =
+      '【海鮮 山咲】予約リクエストを受け付けました / Reservation Request Received';
+
+
+    const customerBody =
+`${name} 様
+
+この度は海鮮 山咲へ
+ご予約リクエストをいただき、
+ありがとうございます。
+
+下記の内容で受け付けました。
+
+━━━━━━━━━━━━━━━━
+来店日：${date}
+時間：${time}
+人数：${people}
+━━━━━━━━━━━━━━━━
+
+【重要】
+
+こちらは「予約リクエスト受付」のメールです。
+
+この時点では、
+まだ予約は確定しておりません。
+
+店舗からの確認連絡をもって
+予約確定となります。
+
+予約時間を10分過ぎてもご来店がない場合は、
+自動キャンセルとさせていただく場合がございます。
+
+ご都合が悪くなった場合は、
+事前にキャンセルのご連絡をお願いいたします。
+
+
+──────────────
+English
+──────────────
+
+Thank you for your reservation request at Kaisendon Yamasaki.
+
+We have received the following request:
+
+Date: ${date}
+Time: ${time}
+Guests: ${people}
+
+IMPORTANT:
+
+This email confirms receipt of your reservation request.
+
+Your reservation is NOT yet confirmed.
+
+Your reservation will be confirmed after you receive confirmation from the restaurant.
+
+If you arrive more than 10 minutes late without contacting us, your reservation may be cancelled.
+
+If your plans change, please contact us in advance to cancel your reservation.
+
+
+──────────────
+繁體中文
+──────────────
+
+感謝您向海鮮 山咲提出訂位申請。
+
+我們已收到以下訂位資訊：
+
+日期：${date}
+時間：${time}
+人數：${people}
+
+【重要】
+
+此郵件僅表示我們已收到您的訂位申請。
+
+目前尚未正式確認訂位。
+
+收到餐廳的確認通知後，
+您的訂位才正式成立。
+
+若超過預約時間10分鐘仍未到店，
+且未事先聯絡，
+我們可能會取消您的訂位。
+
+若您的行程有變，
+請提前與我們聯絡取消訂位。
+
+
+海鮮 山咲
+Kaisendon Yamasaki
+越後湯沢 / Echigo-Yuzawa`;
+
+
+    /* ========================================
+       メール送信
+
+       メールだけ失敗しても
+       台帳の予約データは消さない
+    ======================================== */
+
+    try {
+
+      MailApp.sendEmail(
+        shopEmail,
+        shopSubject,
+        shopBody
+      );
 
     }
+    catch (mailError) {
+
+      console.error(
+        '店舗メール送信エラー：' +
+        mailError
+      );
+
+    }
+
+
+    try {
+
+      MailApp.sendEmail(
+        email,
+        customerSubject,
+        customerBody
+      );
+
+    }
+    catch (mailError) {
+
+      console.error(
+        'お客様メール送信エラー：' +
+        mailError
+      );
+
+    }
+
+
+    /* ========================================
+       正常終了
+    ======================================== */
+
+    return response(
+      'success',
+      '予約リクエストを受け付けました'
+    );
+
 
   }
-);
+  catch (error) {
 
-</script>
+    console.error(
+      error
+    );
 
-</body>
-</html>
+
+    return response(
+      'error',
+      String(error)
+    );
+
+  }
+
+}
+
+
+/* ========================================
+   流入元
+======================================== */
+
+function normalizeSource(source) {
+
+  const s =
+    String(source)
+      .trim()
+      .toLowerCase();
+
+
+  if (
+    s === 'ig' ||
+    s === 'instagram'
+  ) {
+
+    return 'Instagram';
+
+  }
+
+
+  if (
+    s === 'threads' ||
+    s === 'thread'
+  ) {
+
+    return 'Threads';
+
+  }
+
+
+  if (
+    s === 'google' ||
+    s === 'gmb'
+  ) {
+
+    return 'Google';
+
+  }
+
+
+  if (!s) {
+
+    return '不明';
+
+  }
+
+
+  return source;
+
+}
+
+
+/* ========================================
+   レスポンス
+======================================== */
+
+function response(
+  status,
+  message
+) {
+
+  return ContentService
+    .createTextOutput(
+
+      JSON.stringify({
+
+        status:status,
+        message:message
+
+      })
+
+    )
+    .setMimeType(
+      ContentService.MimeType.JSON
+    );
+
+}
