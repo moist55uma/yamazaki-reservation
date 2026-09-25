@@ -14,6 +14,7 @@
   --line:#d9dee5;
 }
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
@@ -21,33 +22,39 @@ body{
   color:#111;
   min-height:100vh;
 }
+
 .wrap{
   width:min(100%,520px);
   margin:0 auto;
   padding:28px 16px 40px;
 }
+
 .brand{
   color:white;
   text-align:center;
   margin-bottom:20px;
 }
+
 .logo{
   font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
   font-size:36px;
   letter-spacing:.12em;
   font-weight:700;
 }
+
 .card{
   background:var(--cream);
   border-radius:18px;
   padding:22px 18px 20px;
   box-shadow:0 16px 40px rgba(0,0,0,.24);
 }
+
 h1{
   margin:0 0 6px;
   font-size:22px;
   text-align:center;
 }
+
 .lead{
   margin:0 0 20px;
   font-size:13px;
@@ -55,13 +62,16 @@ h1{
   text-align:center;
   line-height:1.6;
 }
+
 .field{margin:14px 0}
+
 label{
   display:block;
   font-weight:700;
   font-size:14px;
   margin-bottom:7px;
 }
+
 select,input,textarea{
   width:100%;
   border:1px solid var(--line);
@@ -71,26 +81,31 @@ select,input,textarea{
   font-size:16px;
   outline:none;
 }
+
 select:focus,input:focus,textarea:focus{
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(201,169,110,.16);
 }
+
 #date{
   width:62%;
   min-width:190px;
   max-width:250px;
 }
+
 .row{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
+
 .notice{
   margin:8px 0 0;
   font-size:12px;
   line-height:1.55;
   color:#66717d;
 }
+
 .error{
   display:none;
   margin-top:8px;
@@ -102,6 +117,7 @@ select:focus,input:focus,textarea:focus{
   font-size:12px;
   line-height:1.55;
 }
+
 .note{
   background:white;
   border-left:4px solid var(--gold);
@@ -112,6 +128,7 @@ select:focus,input:focus,textarea:focus{
   color:#56606c;
   margin:16px 0;
 }
+
 button{
   width:100%;
   border:0;
@@ -123,9 +140,11 @@ button{
   padding:15px 12px;
   cursor:pointer;
 }
+
 button:disabled{
   opacity:.55;
 }
+
 .success{
   display:none;
   margin-top:14px;
@@ -137,6 +156,7 @@ button:disabled{
   font-size:13px;
   line-height:1.7;
 }
+
 .footer{
   color:white;
   text-align:center;
@@ -152,145 +172,160 @@ button:disabled{
 
 <div class="wrap">
 
-<div class="brand">
-  <div class="logo">海鮮 山咲</div>
-</div>
+  <div class="brand">
+    <div class="logo">海鮮 山咲</div>
+  </div>
 
-<div class="card">
+  <div class="card">
 
-<h1>WEB予約</h1>
+    <h1>WEB予約</h1>
 
-<p class="lead">
-ご希望の日時・人数をご入力ください。<br>
-内容確認後、店舗よりご連絡いたします。
-</p>
+    <p class="lead">
+      ご希望の日時・人数をご入力ください。<br>
+      内容確認後、店舗よりご連絡いたします。
+    </p>
 
-<form
- id="bookingForm"
- method="post"
- action="https://script.google.com/macros/s/AKfycbzWsu0E55xAaK41mnuYQNLJOaiYTAtc1tdogBz7OE12Ln2SXFVTIEc72DJ9494DqDFO/exec"
->
+    <form
+      id="bookingForm"
+      method="post"
+      action="https://script.google.com/macros/s/AKfycbzWsu0E55xAaK41mnuYQNLJOaiYTAtc1tdogBz7OE12Ln2SXFVTIEc72DJ9494DqDFO/exec"
+    >
 
-<input type="hidden" id="source" name="source" value="不明">
+      <input type="hidden" id="source" name="source" value="不明">
 
-<div class="field">
+      <div class="field">
 
-<label for="date">ご来店日 / Date</label>
+        <label for="date">ご来店日 / Date</label>
 
-<input id="date" name="date" type="date" required>
+        <input id="date" name="date" type="date" required>
 
-<p class="notice">
-本日から14日以内の営業日のみご予約いただけます。<br>
-Reservations are accepted for business days within the next 14 days.<br>
-僅接受自今日起14天內營業日的訂位。
-</p>
+        <p class="notice">
+          本日から14日以内の営業日のみご予約いただけます。<br>
+          Reservations are accepted for business days within the next 14 days.<br>
+          僅接受自今日起14天內營業日的訂位。
+        </p>
 
-<div id="dateError" class="error"></div>
+        <div id="dateError" class="error"></div>
 
-</div>
+      </div>
 
-<div class="row">
+      <div class="row">
 
-<div class="field">
+        <div class="field">
 
-<label for="time">お時間 / Time</label>
+          <label for="time">お時間 / Time</label>
 
-<select id="time" name="time" required>
-<option value="">日付を選択</option>
-</select>
+          <select id="time" name="time" required>
+            <option value="">日付を選択</option>
+          </select>
 
-</div>
+        </div>
 
-<div class="field">
+        <div class="field">
 
-<label for="people">人数 / Guests</label>
+          <label for="people">人数 / Guests</label>
 
-<select id="people" name="people" required>
-<option value="">選択</option>
-<option>1名</option>
-<option>2名</option>
-<option>3名</option>
-<option>4名</option>
-<option>5名</option>
-<option>6名</option>
-<option>7名以上</option>
-</select>
+          <select id="people" name="people" required>
+            <option value="">選択</option>
+            <option>1名</option>
+            <option>2名</option>
+            <option>3名</option>
+            <option>4名</option>
+            <option>5名</option>
+            <option>6名</option>
+            <option>7名以上</option>
+          </select>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-<div class="field">
-<label for="name">お名前 / Name</label>
-<input id="name" name="name" type="text"
-placeholder="例：山田 太郎" required>
-</div>
+      <div class="field">
+        <label for="name">お名前 / Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="例：山田 太郎"
+          required
+        >
+      </div>
 
-<div class="field">
-<label for="phone">電話番号 / Phone</label>
-<input id="phone" name="phone" type="tel"
-placeholder="例：090-1234-5678" required>
-</div>
+      <div class="field">
+        <label for="phone">電話番号 / Phone</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          placeholder="例：090-1234-5678"
+          required
+        >
+      </div>
 
-<div class="field">
-<label for="email">連絡先メールアドレス / Email</label>
-<input id="email" name="email" type="email"
-placeholder="例：example@email.com" required>
-</div>
+      <div class="field">
+        <label for="email">連絡先メールアドレス / Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="例：example@email.com"
+          required
+        >
+      </div>
 
-<div class="field">
+      <div class="field">
 
-<label for="memo">
-備考（任意） / Notes (Optional)
-</label>
+        <label for="memo">
+          備考（任意） / Notes (Optional)
+        </label>
 
-<textarea
-id="memo"
-name="memo"
-rows="3"
-placeholder="お子様連れ、席のご希望、アレルギーなど"
-></textarea>
+        <textarea
+          id="memo"
+          name="memo"
+          rows="3"
+          placeholder="お子様連れ、席のご希望、アレルギーなど"
+        ></textarea>
 
-</div>
+      </div>
 
-<div class="note">
+      <div class="note">
 
-※こちらは<strong>予約リクエスト</strong>です。
-店舗からの確認連絡をもって予約確定となります。<br><br>
+        ※こちらは<strong>予約リクエスト</strong>です。
+        店舗からの確認連絡をもって予約確定となります。<br><br>
 
-This is a reservation request.
-Your reservation is confirmed only after confirmation from the restaurant.<br><br>
+        This is a reservation request.
+        Your reservation is confirmed only after confirmation from the restaurant.<br><br>
 
-此為訂位申請。
-收到餐廳確認通知後，訂位才正式成立。
+        此為訂位申請。
+        收到餐廳確認通知後，訂位才正式成立。
 
-</div>
+      </div>
 
-<button type="submit">
-この内容で予約する
-</button>
+      <button id="submitButton" type="submit">
+        この内容で予約する
+      </button>
 
-<div class="success" id="success">
+      <div class="success" id="success">
 
-<strong>予約リクエストを受け付けました。</strong><br>
-店舗からの確認メールをお待ちください。<br><br>
+        <strong>予約リクエストを受け付けました。</strong><br>
+        店舗からの確認メールをお待ちください。<br><br>
 
-Your reservation request has been received.<br>
-Please wait for a confirmation email from the restaurant.<br><br>
+        Your reservation request has been received.<br>
+        Please wait for a confirmation email from the restaurant.<br><br>
 
-已收到您的訂位申請。<br>
-請等待餐廳的確認郵件。
+        已收到您的訂位申請。<br>
+        請等待餐廳的確認郵件。
 
-</div>
+      </div>
 
-</form>
+    </form>
 
-</div>
+  </div>
 
-<div class="footer">
-海鮮 山咲<br>
-越後湯沢
-</div>
+  <div class="footer">
+    海鮮 山咲<br>
+    越後湯沢
+  </div>
 
 </div>
 
@@ -303,140 +338,162 @@ Please wait for a confirmation email from the restaurant.<br><br>
 
 const OPEN_DATES = [
 
-'2026-09-26',
-'2026-09-27',
-'2026-09-28',
-'2026-09-29',
+  '2026-09-26',
+  '2026-09-27',
+  '2026-09-28',
+  '2026-09-29',
 
-'2026-10-03',
-'2026-10-04',
-'2026-10-05',
-'2026-10-06',
+  '2026-10-03',
+  '2026-10-04',
+  '2026-10-05',
+  '2026-10-06',
 
-'2026-10-10',
-'2026-10-11',
-'2026-10-12',
-'2026-10-13',
+  '2026-10-10',
+  '2026-10-11',
+  '2026-10-12',
+  '2026-10-13',
 
-'2026-10-16',
-'2026-10-17',
-'2026-10-18',
-'2026-10-19',
-'2026-10-20',
+  '2026-10-16',
+  '2026-10-17',
+  '2026-10-18',
+  '2026-10-19',
+  '2026-10-20',
 
-'2026-10-23',
-'2026-10-24',
-'2026-10-25',
-'2026-10-26',
+  '2026-10-23',
+  '2026-10-24',
+  '2026-10-25',
+  '2026-10-26',
 
-'2026-10-30',
-'2026-10-31'
+  '2026-10-30',
+  '2026-10-31'
 
 ];
 
 const LUNCH_TIMES = [
-'11:30',
-'12:00',
-'12:30',
-'13:00'
+  '11:30',
+  '12:00',
+  '12:30',
+  '13:00'
 ];
 
 const DINNER_TIMES = [
-'17:30',
-'18:00',
-'18:30',
-'19:00'
+  '17:30',
+  '18:00',
+  '18:30',
+  '19:00'
 ];
 
 
 const form =
-document.getElementById('bookingForm');
+  document.getElementById('bookingForm');
 
 const dateInput =
-document.getElementById('date');
+  document.getElementById('date');
 
 const timeSelect =
-document.getElementById('time');
+  document.getElementById('time');
 
 const dateError =
-document.getElementById('dateError');
+  document.getElementById('dateError');
 
 const success =
-document.getElementById('success');
+  document.getElementById('success');
 
 const sourceInput =
-document.getElementById('source');
+  document.getElementById('source');
+
+const submitButton =
+  document.getElementById('submitButton');
 
 
 /* =========================
-   日本時間の日付
+   日本の日付
 ========================= */
 
 function getJapanToday(){
 
-const parts =
-new Intl.DateTimeFormat(
-'en-CA',
-{
-timeZone:'Asia/Tokyo',
-year:'numeric',
-month:'2-digit',
-day:'2-digit'
-}
-).formatToParts(new Date());
+  const parts =
+    new Intl.DateTimeFormat(
+      'en-CA',
+      {
+        timeZone:'Asia/Tokyo',
+        year:'numeric',
+        month:'2-digit',
+        day:'2-digit'
+      }
+    ).formatToParts(new Date());
 
-const values = {};
+  const values = {};
 
-parts.forEach(p => {
-values[p.type] = p.value;
-});
+  parts.forEach(part => {
+    values[part.type] = part.value;
+  });
 
-return (
-values.year + '-' +
-values.month + '-' +
-values.day
-);
+  return (
+    values.year + '-' +
+    values.month + '-' +
+    values.day
+  );
 
 }
 
 
 function addDays(dateString,days){
 
-const d =
-new Date(dateString + 'T00:00:00+09:00');
+  const date =
+    new Date(
+      dateString + 'T00:00:00+09:00'
+    );
 
-d.setDate(d.getDate()+days);
+  date.setDate(
+    date.getDate() + days
+  );
 
-return new Intl.DateTimeFormat(
-'en-CA',
-{
-timeZone:'Asia/Tokyo',
-year:'numeric',
-month:'2-digit',
-day:'2-digit'
-}
-).format(d);
+  const parts =
+    new Intl.DateTimeFormat(
+      'en-CA',
+      {
+        timeZone:'Asia/Tokyo',
+        year:'numeric',
+        month:'2-digit',
+        day:'2-digit'
+      }
+    ).formatToParts(date);
+
+  const values = {};
+
+  parts.forEach(part => {
+    values[part.type] = part.value;
+  });
+
+  return (
+    values.year + '-' +
+    values.month + '-' +
+    values.day
+  );
 
 }
 
 
 /* =========================
-   カレンダー範囲
+   予約可能期間
 ========================= */
 
-const today = getJapanToday();
+const today =
+  getJapanToday();
 
-dateInput.min = today;
-
-/* 今日を含め14日先まで */
 const fourteenDaysLater =
-addDays(today,14);
+  addDays(today,14);
 
-/* 11月以降はまだ開放しない */
+dateInput.min =
+  today;
+
+/* 11月以降はまだ予約不可 */
+
 dateInput.max =
-fourteenDaysLater < '2026-10-31'
-? fourteenDaysLater
-: '2026-10-31';
+  fourteenDaysLater < '2026-10-31'
+    ? fourteenDaysLater
+    : '2026-10-31';
 
 
 /* =========================
@@ -444,204 +501,235 @@ fourteenDaysLater < '2026-10-31'
 ========================= */
 
 const params =
-new URLSearchParams(
-window.location.search
-);
+  new URLSearchParams(
+    window.location.search
+  );
 
 let source =
-params.get('utm_source') ||
-params.get('source') ||
-'不明';
+  params.get('utm_source') ||
+  params.get('source') ||
+  '不明';
 
 source =
-source.toLowerCase();
+  source.toLowerCase();
 
 if(
-source === 'ig' ||
-source === 'instagram'
+  source === 'ig' ||
+  source === 'instagram'
 ){
-source = 'Instagram';
+  source = 'Instagram';
 }
 else if(
-source === 'threads' ||
-source === 'thread'
+  source === 'threads' ||
+  source === 'thread'
 ){
-source = 'Threads';
+  source = 'Threads';
 }
 else if(
-source === 'google' ||
-source === 'gmb'
+  source === 'google' ||
+  source === 'gmb'
 ){
-source = 'Google';
+  source = 'Google';
 }
-else if(source === '不明'){
-source = '不明';
+else{
+  source = source || '不明';
 }
 
-sourceInput.value = source;
+sourceInput.value =
+  source;
 
 
 /* =========================
-   現在時刻（日本時間）
+   日本時間
 ========================= */
 
 function getJapanTime(){
 
-return new Intl.DateTimeFormat(
-'en-GB',
-{
-timeZone:'Asia/Tokyo',
-hour:'2-digit',
-minute:'2-digit',
-hour12:false
-}
-).format(new Date());
+  const parts =
+    new Intl.DateTimeFormat(
+      'en-GB',
+      {
+        timeZone:'Asia/Tokyo',
+        hour:'2-digit',
+        minute:'2-digit',
+        hour12:false
+      }
+    ).formatToParts(new Date());
+
+  const values = {};
+
+  parts.forEach(part => {
+    values[part.type] = part.value;
+  });
+
+  return (
+    values.hour + ':' +
+    values.minute
+  );
 
 }
 
 
 /* =========================
-   時間選択
+   時間選択肢を作る
 ========================= */
 
 function createTimeOptions(){
 
-timeSelect.innerHTML =
-'<option value="">選択してください</option>';
+  timeSelect.innerHTML =
+    '<option value="">選択してください</option>';
 
-if(!dateInput.value){
-return;
-}
+  const selectedDate =
+    dateInput.value;
 
-let times =
-[...LUNCH_TIMES,...DINNER_TIMES];
+  if(!selectedDate){
+    return;
+  }
 
-const selectedDate =
-dateInput.value;
-
-
-/* 当日締切 */
-
-if(selectedDate === getJapanToday()){
-
-const nowTime =
-getJapanTime();
-
-times =
-times.filter(time => {
-
-if(
-LUNCH_TIMES.includes(time) &&
-nowTime >= '10:30'
-){
-return false;
-}
-
-if(
-DINNER_TIMES.includes(time) &&
-nowTime >= '16:00'
-){
-return false;
-}
-
-return true;
-
-});
-
-}
+  let times = [
+    ...LUNCH_TIMES,
+    ...DINNER_TIMES
+  ];
 
 
-times.forEach(time => {
+  /* 当日の締切 */
 
-const option =
-document.createElement('option');
+  if(selectedDate === getJapanToday()){
 
-option.value = time;
-option.textContent = time;
+    const currentTime =
+      getJapanTime();
 
-timeSelect.appendChild(option);
+    times =
+      times.filter(time => {
 
-});
+        if(
+          LUNCH_TIMES.includes(time) &&
+          currentTime >= '10:30'
+        ){
+          return false;
+        }
+
+        if(
+          DINNER_TIMES.includes(time) &&
+          currentTime >= '16:00'
+        ){
+          return false;
+        }
+
+        return true;
+
+      });
+
+  }
 
 
-if(times.length === 0){
+  times.forEach(time => {
 
-timeSelect.innerHTML =
-'<option value="">本日の受付は終了しました</option>';
+    const option =
+      document.createElement('option');
 
-}
+    option.value =
+      time;
+
+    option.textContent =
+      time;
+
+    timeSelect.appendChild(
+      option
+    );
+
+  });
+
+
+  if(times.length === 0){
+
+    timeSelect.innerHTML =
+      '<option value="">本日の受付は終了しました</option>';
+
+  }
 
 }
 
 
 /* =========================
-   日付チェック
+   日付変更時だけチェック
 ========================= */
 
-function validateDate(){
+function validateAndUpdateDate(){
 
-dateError.style.display = 'none';
-dateError.innerHTML = '';
+  dateError.style.display =
+    'none';
 
-const selected =
-dateInput.value;
+  dateError.innerHTML =
+    '';
 
-if(!selected){
-return false;
-}
+  const selected =
+    dateInput.value;
 
+  if(!selected){
 
-if(
-selected < today ||
-selected > dateInput.max
-){
+    timeSelect.innerHTML =
+      '<option value="">日付を選択</option>';
 
-dateError.innerHTML =
-'予約は本日から14日以内のみ受け付けています。<br>' +
-'Reservations are accepted within the next 14 days.<br>' +
-'僅接受自今日起14天內的訂位。';
-
-dateError.style.display = 'block';
-
-dateInput.value = '';
-
-timeSelect.innerHTML =
-'<option value="">日付を選択</option>';
-
-return false;
-
-}
+    return false;
+  }
 
 
-if(!OPEN_DATES.includes(selected)){
+  if(
+    selected < today ||
+    selected > dateInput.max
+  ){
 
-dateError.innerHTML =
-'この日は休業日のため、ご予約いただけません。<br>' +
-'Closed on this date. Please select another business day.<br>' +
-'此日期為公休日，請選擇其他營業日。';
+    dateError.innerHTML =
+      '予約は本日から14日以内のみ受け付けています。<br>' +
+      'Reservations are accepted within the next 14 days.<br>' +
+      '僅接受自今日起14天內的訂位。';
 
-dateError.style.display = 'block';
+    dateError.style.display =
+      'block';
 
-dateInput.value = '';
+    dateInput.value = '';
 
-timeSelect.innerHTML =
-'<option value="">日付を選択</option>';
+    timeSelect.innerHTML =
+      '<option value="">日付を選択</option>';
 
-return false;
+    return false;
 
-}
+  }
 
 
-createTimeOptions();
+  if(
+    !OPEN_DATES.includes(selected)
+  ){
 
-return true;
+    dateError.innerHTML =
+      'この日は休業日のため、ご予約いただけません。<br>' +
+      'Closed on this date. Please select another business day.<br>' +
+      '此日期為公休日，請選擇其他營業日。';
+
+    dateError.style.display =
+      'block';
+
+    dateInput.value = '';
+
+    timeSelect.innerHTML =
+      '<option value="">日付を選択</option>';
+
+    return false;
+
+  }
+
+
+  createTimeOptions();
+
+  return true;
 
 }
 
 
 dateInput.addEventListener(
-'change',
-validateDate
+  'change',
+  validateAndUpdateDate
 );
 
 
@@ -650,83 +738,170 @@ validateDate
 ========================= */
 
 form.addEventListener(
-'submit',
-async function(e){
+  'submit',
+  async function(e){
 
-e.preventDefault();
-
-if(!validateDate()){
-return;
-}
-
-if(!timeSelect.value){
-timeSelect.focus();
-return;
-}
-
-const btn =
-form.querySelector(
-'button[type="submit"]'
-);
-
-btn.disabled = true;
-
-btn.textContent =
-'送信中... / Sending...';
+    e.preventDefault();
 
 
-try{
+    /* ここでは時間欄を作り直さない */
 
-const data =
-new FormData(form);
+    const selectedDate =
+      dateInput.value;
 
-await fetch(
-form.action,
-{
-method:'POST',
-body:data,
-mode:'no-cors'
-}
-);
+    const selectedTime =
+      timeSelect.value;
 
-success.style.display =
-'block';
 
-btn.textContent =
-'送信完了 / Sent';
+    /* 日付チェック */
 
-form
-.querySelectorAll(
-'input:not([type="hidden"]), textarea, select'
-)
-.forEach(el => {
+    if(
+      !selectedDate ||
+      !OPEN_DATES.includes(selectedDate) ||
+      selectedDate < today ||
+      selectedDate > dateInput.max
+    ){
 
-if(el.id !== 'date'){
-el.disabled = true;
-}
+      dateError.innerHTML =
+        'この日はご予約いただけません。別の営業日をお選びください。';
 
-});
+      dateError.style.display =
+        'block';
 
-window.scrollTo({
-top:document.body.scrollHeight,
-behavior:'smooth'
-});
+      dateInput.focus();
 
-}
-catch(err){
+      return;
 
-alert(
-'送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。'
-);
+    }
 
-btn.disabled = false;
 
-btn.textContent =
-'この内容で予約する';
+    /* 時間チェック */
 
-}
+    const validTimes = [
+      ...LUNCH_TIMES,
+      ...DINNER_TIMES
+    ];
 
-}
+    if(
+      !selectedTime ||
+      !validTimes.includes(selectedTime)
+    ){
+
+      alert(
+        '予約時間を選択してください。'
+      );
+
+      timeSelect.focus();
+
+      return;
+
+    }
+
+
+    /* 当日締切を送信直前にも確認 */
+
+    if(
+      selectedDate === getJapanToday()
+    ){
+
+      const currentTime =
+        getJapanTime();
+
+      if(
+        LUNCH_TIMES.includes(selectedTime) &&
+        currentTime >= '10:30'
+      ){
+
+        alert(
+          '本日のランチ予約受付は終了しました。'
+        );
+
+        createTimeOptions();
+
+        return;
+
+      }
+
+
+      if(
+        DINNER_TIMES.includes(selectedTime) &&
+        currentTime >= '16:00'
+      ){
+
+        alert(
+          '本日のディナー予約受付は終了しました。'
+        );
+
+        createTimeOptions();
+
+        return;
+
+      }
+
+    }
+
+
+    submitButton.disabled =
+      true;
+
+    submitButton.textContent =
+      '送信中... / Sending...';
+
+
+    try{
+
+      const data =
+        new FormData(form);
+
+      await fetch(
+        form.action,
+        {
+          method:'POST',
+          body:data,
+          mode:'no-cors'
+        }
+      );
+
+
+      success.style.display =
+        'block';
+
+      submitButton.textContent =
+        '送信完了 / Sent';
+
+
+      /* 二重送信防止 */
+
+      form
+        .querySelectorAll(
+          'input:not([type="hidden"]), textarea, select'
+        )
+        .forEach(element => {
+          element.disabled = true;
+        });
+
+
+      window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:'smooth'
+      });
+
+    }
+    catch(error){
+
+      alert(
+        '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。'
+      );
+
+      submitButton.disabled =
+        false;
+
+      submitButton.textContent =
+        'この内容で予約する';
+
+    }
+
+  }
 );
 
 </script>
